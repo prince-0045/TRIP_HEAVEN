@@ -1,0 +1,105 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container-fluid px-4">
+    <!-- Responsive Filter Section -->
+    <div class="filters-container scroll-reveal">
+        <div id="filters" class="d-flex flex-nowrap overflow-auto pb-2 px-2">
+            <div class="filter <%= activeCategory === 'trending' ? 'active-filter' : '' %>" data-category="trending">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p class="mb-0">Trending</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'rooms' ? 'active-filter' : '' %>" data-category="rooms">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p class="mb-0">Rooms</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'iconicCity' ? 'active-filter' : '' %>" data-category="iconicCity">
+                <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p class="mb-0">Iconic City</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'mountain' ? 'active-filter' : '' %>" data-category="mountain">
+                <div><i class="fa-solid fa-mountain"></i></div>
+                <p class="mb-0">Mountain</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'castle' ? 'active-filter' : '' %>" data-category="castle">
+                <div><i class="fa-solid fa-chess-rook"></i></div>
+                <p class="mb-0">Castle</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'swimmingPool' ? 'active-filter' : '' %>" data-category="swimmingPool">
+                <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p class="mb-0">Swimming Pool</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'camping' ? 'active-filter' : '' %>" data-category="camping">
+                <div><i class="fa-solid fa-campground"></i></div>
+                <p class="mb-0">Camping</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'farms' ? 'active-filter' : '' %>" data-category="farms">
+                <div><i class="fa-solid fa-tractor"></i></div>
+                <p class="mb-0">Farms</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'artic' ? 'active-filter' : '' %>" data-category="artic">
+                <div><i class="fa-solid fa-snowflake"></i></div>
+                <p class="mb-0">Artic</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'domes' ? 'active-filter' : '' %>" data-category="domes">
+                <div><i class="fa-solid fa-landmark-dome"></i></div>
+                <p class="mb-0">Domes</p>
+            </div>
+
+            <div class="filter <%= activeCategory === 'sailboat' ? 'active-filter' : '' %>" data-category="sailboat">
+                <div><i class="fa-solid fa-sailboat"></i></div>
+                <p class="mb-0">Sailboat</p>
+            </div>
+
+            <!-- Desktop Tax Toggle -->
+            <div class="tax-toggle ms-auto d-none d-md-flex">
+                <div class="form-check-reverse form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                    <label class="form-check-label" for="switchCheckDefault">Display Total after taxes</label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Tax Toggle -->
+        <div class="d-flex d-md-none justify-content-center mt-3">
+            <div class="tax-toggle">
+                <div class="form-check-reverse form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefaultMobile">
+                    <label class="form-check-label" for="switchCheckDefaultMobile">Display Total after taxes</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listings Grid -->
+    <div class="listings-grid scroll-reveal">
+        <% for (let listings of allListings) { %>
+            <a href="/listings/<%= listings._id %>" class="listing-link">
+                <div class="listing-card">
+                    <div class="card-image-container">
+                        <img src="<%= listings.image.url %>" class="card-img-top" alt="Listing_image">
+                        <div class="card-img-overlay"></div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b><%= listings.title %></b> <br>
+                            <span class="price">&#8377; <%= listings.price.toLocaleString("en-IN") %></span> / night
+                            <i class="tax-info">&nbsp;+18% GST</i>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+</div>
+
+<script src="/js/filter.js"></script>
+<script src="/js/taxSwitch.js"></script>

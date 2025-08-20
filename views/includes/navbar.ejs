@@ -1,0 +1,86 @@
+<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Brand -->
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-regular fa-compass"></i>
+            <span class="brand-text">TRIP HEAVEN</span>
+        </a>
+        
+        <!-- Navbar Toggler -->
+        <button class="navbar-toggler" type="button" id="navbarToggle">
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+        </button>
+        
+        <!-- Navbar Content -->
+        <div class="navbar-content" id="navbarContent">
+            <!-- Left Navigation -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/listings">Explore</a>
+                </li>
+            </ul>
+            
+            <!-- Search Bar -->
+            <form class="search-form" role="search" action="/listings/search" method="get">
+                <div class="search-container">
+                    <input class="search-input" type="search" placeholder="Search destination" name="country"/>
+                    <button class="search-button" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span class="search-text">Search</span>
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Right Navigation -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link host-link" href="/listings/new">
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="host-text">Airbnb your home</span>
+                    </a>
+                </li>
+                
+                <!-- Profile Section -->
+                <li class="nav-item profile-section">
+                    <% if(!currUser) { %>
+                        <div class="profile-dropdown">
+                            <button class="profile-trigger" type="button">
+                                <i class="fa-solid fa-user"></i>
+                            </button>
+                            <div class="profile-menu">
+                                <a href="/signup" class="profile-menu-item">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <span>Sign Up</span>
+                                </a>
+                                <a href="/login" class="profile-menu-item">
+                                    <i class="fa-solid fa-sign-in-alt"></i>
+                                    <span>Login</span>
+                                </a>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="profile-dropdown">
+                            <button class="profile-trigger" type="button">
+                                <div class="profile-avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            </button>
+                            <div class="profile-menu">
+                                <a href="/profile" class="profile-menu-item">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                    <span>Profile</span>
+                                </a>
+                                <a href="/logout" class="profile-menu-item">
+                                    <i class="fa-solid fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </div>
+                    <% } %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

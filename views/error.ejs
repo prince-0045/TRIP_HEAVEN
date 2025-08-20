@@ -1,0 +1,65 @@
+<% layout('/layouts/boilerplate.ejs') %>
+
+<div class="container-fluid px-4">
+    <div class="error-container">
+        <div class="error-card scroll-reveal">
+            <div class="error-content">
+                <i class="fas fa-exclamation-triangle error-icon"></i>
+                <h2 class="error-title">Oops! Something went wrong</h2>
+                <p class="error-message">We encountered an error while processing your request</p>
+                
+                <div class="error-details">
+                    <div class="error-header">
+                        <strong>Error Details:</strong>
+                        <span class="error-code"><%= err.statusCode || 500 %></span>
+                    </div>
+                    <p class="error-text"><%= err.message %></p>
+                    
+                    <% if (process.env.NODE_ENV !== "production" && err.stack) { %>
+                        <div class="error-stack">
+                            <details>
+                                <summary>Error Stack</summary>
+                                <pre><%= err.stack %></pre>
+                            </details>
+                        </div>
+                    <% } %>
+                </div>
+                
+                <div class="error-actions">
+                    <button onclick="window.history.back()" class="error-btn secondary">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                    <a href="/listings" class="error-btn primary">
+                        <i class="fas fa-home"></i> Return to Homepage
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .error-icon {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    details summary {
+        cursor: pointer;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    
+    pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        border-radius: 0.25rem;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+</style>
